@@ -1,0 +1,30 @@
+<!-- 
+		</div><!-- div content 
+	</div><!-- div body 
+	
+	<c:if test="${userWeb.logado}">
+		<div class="footer">
+		
+		<div class="footer-inner">
+			
+			<div class="container">
+				
+				<div class="row">
+					
+	    			<div class="span12">
+	    				&copy; 2013 Sistema de gestão APAS - São Carlos.    &nbsp;
+	    			
+	    				<a  href="http://bootstrapadmin.com"> Power By Proinov</a>.
+	    			</div> <!-- /span12 -->
+	    			
+	    		</div> <!-- /row 
+	    		
+			</div> <!-- /container 
+			
+		</div> <!-- /footer-inner 
+		
+	</div> <!-- /footer 
+</c:if>
+ -->
+</body>
+</html>

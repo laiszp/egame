@@ -1,0 +1,418 @@
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+
+<!--Core CSS -->
+<link href="bs3/css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-reset.css" rel="stylesheet">
+<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+<!-- Custom styles for this template -->
+<link href="css/style.css" rel="stylesheet">
+<link href="css/style-responsive.css" rel="stylesheet" />
+	
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/alertify.min.js"></script>
+	<link rel="stylesheet" href="css/alertify.core.css" />
+	<link rel="stylesheet" href="css/alertify.default.css" id="toggleCSS" />
+		<style>
+		.alertify-log-custom {
+			background: blue;
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<c:if test="${userWeb.logado}">
+
+<!-- ________________________ Header_____________________________-->
+<header class="header fixed-top clearfix">
+<!--logo start-->
+<div class="brand">
+	<div  id="pontos"> 
+			<img src="images/badges/pts.png" height="40px"alt=""> ${userWeb.pontos}
+		<div  id="target-1"></div>
+	</div>
+    
+</div>
+<!--logo end-->
+
+<!--  notification start -->
+<div class="nav notify-row" id="top_menu">
+		
+    <ul class="nav top-menu">
+        <!-- settings start -->
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+               ${userWeb.qtdAcertos}
+                <span class="badge bg-success"> <i class="fa fa-check"></i></span>
+            </a>
+            <ul class="dropdown-menu extended tasks-bar">
+                <li>
+					<p >Número de respostas corretas</p>
+                </li>
+            </ul>
+        </li>
+        <!-- settings end -->
+        <!-- inbox dropdown start-->
+        <li id="header_inbox_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                 ${userWeb.qtdErros}
+                <span class="badge bg-important"><i class="fa fa-times "></i></span>
+            </a>
+            <ul class="dropdown-menu extended tasks-bar">
+                <li>
+					<p >Número de respostas erradas</p>
+                </li>
+            </ul>
+        </li>
+        <!-- inbox dropdown end -->
+        <!-- notification dropdown start-->
+        <li id="header_notification_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+               ${userWeb.qtdDicas}
+                <span class="badge bg-warning"> <i class="fa fa-question"></i></span>
+            </a>
+            <ul class="dropdown-menu extended tasks-bar">
+                <li>
+					<p >Número de ajuda solicitada</p>
+                </li>
+            </ul>
+        </li>
+        <!-- notification dropdown end -->
+    </ul>
+   
+</div>
+ <!--  notification end -->
+ 
+<div class="top-nav clearfix">
+    <!--search & user info start-->
+    <ul class="nav pull-right top-menu">
+        <!-- 
+        <li class="dropdown language">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                <img alt="" src="images/flags/br.png">
+                <span class="username">BR</span>
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li><a href="#"><img alt="" src="images/flags/us.png"> English</a></li>
+            </ul>
+        </li>
+         -->
+        <!-- user login dropdown start-->
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                <img alt="" src="images/avatar/${userWeb.avatar}">
+                <span class="username">${userWeb.nome}</span>
+                
+            </a>
+            <!-- 
+            <ul class="dropdown-menu extended logout">
+            
+                <li><a href="<c:url value="/profile"/>"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                 
+                <li><a href="<c:url value="/logout"/>"><i class="fa fa-key"></i> Sair</a></li>
+               
+            </ul> -->
+        </li>
+        <!-- user login dropdown end -->
+        
+    </ul>
+    <!--search & user info end-->
+</div>
+</header>
+
+
+	<!--header end-->
+	
+<aside>
+    <div id="sidebar" class="nav-collapse">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu" id="nav-accordion">
+        <!--
+            <li>
+                <a href="<c:url value="/instrucoes"/>">
+                    <i class="fa fa-dashboard"></i>
+                    <span>INSTRUCTIONS</span>
+                </a>
+            </li>
+            <li class="sub-menu">
+                <a href="javascript:;">
+                    <i class="fa fa-laptop"></i>
+                    <span>Questões</span>
+                </a>
+                <ul class="sub">
+                    <li><a href="boxed_page.html">Exercício 1</a></li>
+                    <li><a href="horizontal_menu.html">Exercício 2</a></li>                       //menu com as questoes
+                    <li><a href="language_switch.html">Exercício 3</a></li>
+                </ul> 
+            </li>-->
+           
+        </ul>
+        <!-- sidebar menu end-->
+		
+		<ul class="right-side-accordion">
+			<!-- ESTATISTICAS -->
+			<li class="widget-collapsible">
+				<a href="#" class="head widget-head red-bg active clearfix">
+					<span class="pull-left">Progressos</span>
+					<span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+				</a>
+				<ul class="widget-container">
+					<li>
+					<!--  -->
+						<div class="prog-row side-mini-stat clearfix">
+							<div class="side-graph-info">
+								<h4>Respostas corretas</h4>
+								<p>
+									${userWeb.qtdAcertos} de 30
+								</p>
+							</div>
+							<div class="side-mini-graph">
+								<div class="p-collection">
+									<span class="pc-epie-chart" data-percent="${(userWeb.qtdAcertos*100)/30}">
+									<span class="percent"></span>
+									</span>
+								</div>
+								<div class="target-sell">
+								 
+								</div>
+							</div>
+						</div>
+						<div class="prog-row side-mini-stat">
+							<div class="side-graph-info payment-info">
+								<h4>Respostas erradas</h4>
+								<p>
+									${userWeb.qtdErros} de 30
+								</p>
+							</div>
+							<div class="side-mini-graph">
+								<div class="p-collection">
+									<span class="pc-epie-chart" data-percent="${(userWeb.qtdErros*100)/30}">
+									<span class="percent"></span>
+									</span>
+								</div>
+							</div>
+						</div>
+						<!-- 
+						<div class="prog-row side-mini-stat">
+							<div class="side-graph-info">
+								<h4>product delivery</h4>
+								<p>
+									55%, Deadline 12 june 13
+								</p>
+							</div>
+							<div class="side-mini-graph">
+								<div class="p-delivery">
+									<div class="sparkline" data-type="bar" data-resize="true" data-height="30" data-width="90%" data-bar-color="#39b7ab" data-bar-width="5" data-data="[200,135,667,333,526,996,564,123,890,564,455]">
+									</div>
+								</div>
+							</div>
+						</div>
+						-->
+
+						 
+						<!-- 
+						<div class="prog-row side-mini-stat">
+								<div class="user-thumb">
+									<a href="#"><img src="images/avatar1_small.jpg" alt=""></a>
+								</div>
+							<div class="side-graph-info">
+								<h4>Bruno Genova</h4>
+								<p>
+									255pts
+								</p>
+							</div>
+							<div class="side-mini-graph">
+								<div class="d-pending">
+								</div>
+							</div>
+						</div>
+						 -->
+						<div class="prog-row side-mini-stat">
+							<div class="col-md-12">
+						
+								<h4>Progresso</h4>
+
+								<div class="progress progress-xs mtop10">
+									<div style="width: ${userWeb.progresso}%" role="progressbar" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20"  class="progress-bar progress-bar-info">
+										<span class="sr-only">50% Completo</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</li>
+			<!-- MY BADGES -->
+			<div id="target-2"></div>
+			<li class="widget-collapsible">
+				<a href="#" class="head widget-head purple-bg active">
+					<span class="pull-left">Meus Badges</span>
+					<span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+				</a>
+				<ul class="widget-container">
+					<li>
+							<div class="trophy-thumb">
+								<c:forEach items="${userWeb.badges}" var="badge" varStatus="s">
+									<img class="widget-collapsible" align="left" src="images/trofeus/${badge.imagem}" alt="Albert Einstein">
+								</c:forEach>
+							</div>
+					</li>
+				</ul>
+			</li>
+			<!-- RANKING -->
+			<li class="widget-collapsible">
+				<a href="#" class="head widget-head terques-bg active clearfix">
+					<span class="pull-left">Ranking</span>
+					<span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+				</a>
+				
+				<ul class="widget-container">
+				
+					<li>
+						<div class="ganhador prog-row side-mini-stat ">
+								<div class="user-thumb">
+									<a href="#"><img src="images/avatar/${userWeb.users[0].avatar}" alt=""></a>
+								</div>
+							<div class="side-graph-info">
+								<h4>${userWeb.users[0].nome}</h4>
+								<p>	<h5>${userWeb.users[0].pontos} <img src="images/badges/pts.png" height="20px"  alt=""></h5> </p>
+							</div>
+							<div class="side-mini-graph">
+								<div class="p-collection">
+									<a href="#"><img src="images/badges/primeiro.png" height="50px" alt=""></a>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="gamehover prog-row side-mini-stat">
+								<div class="user-thumb">
+									<a href="#"><img src="images/avatar/${userWeb.users[1].avatar}" alt=""></a>
+								</div>
+							<div class="side-graph-info">
+								<h4>${userWeb.users[1].nome}</h4>
+								<p> <h5>${userWeb.users[1].pontos} <img src="images/badges/pts.png" height="20px"  alt=""></h5> </p>
+							</div>
+							<div class="side-mini-graph">
+								<div class="p-collection">
+									<a href="#"><img src="images/badges/segundo.png" height="50px" alt=""></a>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="gamehover prog-row side-mini-stat">
+								<div class="user-thumb">
+									<a href="#"><img src="images/avatar/${userWeb.users[2].avatar}" alt=""></a>
+								</div>
+							<div class="side-graph-info">
+								<h4>${userWeb.users[2].nome}</h4>
+								<p>	<h5>${userWeb.users[2].pontos} <img src="images/badges/pts.png" height="20px"  alt=""></h5> </p>
+							</div>
+							<div class="side-mini-graph">
+								<a href="#"><img src="images/badges/terceiro.png" height="50px" alt=""></a>
+							</div>
+						</div>
+						
+						
+						<div class="gamehover prog-row side-mini-stat">
+								<div class="user-thumb">
+									<a href="#"><img src="images/avatar/${userWeb.users[3].avatar}" alt=""></a>
+								</div>
+							<div class="side-graph-info">
+								<h4>${userWeb.users[3].nome}</h4>
+								<p><h5>${userWeb.users[3].pontos} <img src="images/badges/pts.png" height="20px"  alt=""></h5></p>
+							</div>
+							<div class="side-mini-graph">
+								<div class="p-collection">
+									<a href="#"><img src="images/badges/outros.png" height="50px" alt=""></a>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div class="gamehover prog-row side-mini-stat">
+								<div class="user-thumb">
+									<a href="#"><img src="images/avatar/${userWeb.users[4].avatar}" alt=""></a>
+								</div>
+							<div class="side-graph-info">
+								<h4>${userWeb.users[4].nome}</h4>
+								<p> <h5>${userWeb.users[4].pontos} <img src="images/badges/pts.png" height="20px"  alt=""></h5> </p>
+							</div>
+							<div class="side-mini-graph">
+								<div class="p-collection">
+									<a href="#"><img src="images/badges/outros.png" height="50px" alt=""></a>
+								</div>
+							</div>
+						</div>
+						 
+					</li>
+				</ul>
+			</li>
+			<!-- STATUS -->
+			<!-- 
+			<li class="widget-collapsible">
+				<a href="#" class="head widget-head yellow-bg active">
+					<span class="pull-left"> shipment status</span>
+					<span class="pull-right widget-collapse"><i class="ico-minus"></i></span>
+				</a>
+				<ul class="widget-container">
+					<li>
+						<div class="col-md-12">
+							<div class="prog-row">
+								<p>
+									Full sleeve baby wear (SL: 17665)
+								</p>
+								<div class="progress progress-xs mtop10">
+									<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+										<span class="sr-only">40% Complete</span>
+									</div>
+								</div>
+							</div>
+							<div class="prog-row">
+								<p>
+									Full sleeve baby wear (SL: 17665)
+								</p>
+								<div class="progress progress-xs mtop10">
+									<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+										<span class="sr-only">70% Completed</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</li>
+			 -->
+			</ul>
+    </div>	
+	
+</aside>	
+	
+	
+		</c:if>
+
+	<div id="content"></div>
+
+	<!-- Placed at the end of the document so the pages load faster -->
+	<!--Easy Pie Chart--> 
+	<script src="assets/easypiechart/jquery.easypiechart.js"></script> 
+	<script src="assets/sparkline/jquery.sparkline.js"></script> 
+	<script src="assets/flot-chart/jquery.flot.js"></script> 
+	<script src="assets/flot-chart/jquery.flot.tooltip.min.js"></script> 
+	<script src="assets/flot-chart/jquery.flot.resize.js"></script> 
+	<script src="assets/flot-chart/jquery.flot.pie.resize.js"></script>
+
+

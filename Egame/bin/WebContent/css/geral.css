@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+
+.botao{
+	padding:3px 3px;
+	border:0px hidden #044a6b;
+	border-radius:1px;
+	background:transparent;
+	color:#044a6b;
+	font-size:12px;
+}
+
+.tabela-interna td tr{
+	padding: 2px 2px 2px 2px;
+}
+
+.input {
+    border: 1px solid #006;
+    height:1px;
+    background: #ffc;
+}
