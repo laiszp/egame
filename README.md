@@ -1,2 +1,0 @@
-# egame
-Gamified educational system
